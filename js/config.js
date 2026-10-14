@@ -1,6 +1,6 @@
 // URL de la aplicación web de Google Apps Script (acaba en /exec): la misma que en la app.
 // Mientras no la pegues, la carta usa la lista de respaldo de abajo.
-const API_URL = "PEGAR_AQUI_URL_APPS_SCRIPT";
+const API_URL = "https://script.google.com/macros/s/AKfycbxUcOTNEX2LVnMBxDtao9VIKpkZTZFTXaHmkyDp2ATpdUya5aHJKvXaOVie7kfy32mJsQ/exec";
 
 // Carta de respaldo (si no hay API o no responde). Son los productos que crea setup() en la Sheet.
 const PANEO_RESPALDO = {
