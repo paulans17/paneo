@@ -122,7 +122,7 @@
   var pan = document.getElementById('pan');
   if (pan) {
     gsap.to(pan, { y: 140, ease: 'none', scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true } });
-    gsap.to('.orbit', { scale: 1.12, ease: 'none', scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true } });
+    gsap.to('.orbit-wrap', { scale: 1.12, ease: 'none', scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true } });
     if (window.matchMedia('(hover: hover)').matches) {
       var mx = gsap.quickTo(pan, 'x', { duration: .8, ease: 'power3' });
       var rot = gsap.quickTo(pan, 'rotation', { duration: .8, ease: 'power3' });

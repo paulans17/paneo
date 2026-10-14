@@ -117,7 +117,9 @@ a:hover { color: var(--dorado-2); }
 .glow { position: absolute; width: 440px; height: 440px; max-width: 90%; aspect-ratio: 1; border-radius: 50%; background: var(--marron); opacity: .55; }
 .crumb { position: absolute; border-radius: 40%; animation: crumb 5s ease-in infinite; }
 @keyframes crumb { 0% { transform: translateY(0) scale(1); opacity: 0; } 15% { opacity: 1; } 100% { transform: translateY(-160px) scale(.4); opacity: 0; } }
-.orbit { position: absolute; width: 520px; height: 520px; max-width: 100%; animation: orbit 28s linear infinite; }
+/* El contenedor escala con el scroll (GSAP); el anillo de dentro gira siempre (CSS). Así no se pisan los transform. */
+.orbit-wrap { position: absolute; width: min(520px, 100%); aspect-ratio: 1; pointer-events: none; }
+.orbit { position: absolute; inset: 0; animation: orbit 28s linear infinite; }
 .orbit .badge { position: absolute; text-align: center; font-weight: 600; font-size: 15px; padding: 10px 0; border-radius: 999px; color: var(--negro); animation: counter 28s linear infinite; }
 .badge.b1 { top: -6px; left: 50%; margin-left: -64px; width: 128px; background: var(--crema); color: var(--choco); }
 .badge.b2 { bottom: -6px; left: 50%; margin-left: -56px; width: 112px; background: var(--naranja); }
@@ -138,7 +140,7 @@ a:hover { color: var(--dorado-2); }
   .hero-btns { margin-top: 28px; }
   .btn-crema, .btn-borde { padding: 15px 24px; font-size: 16px; }
   .hero-art { height: 400px; flex-basis: 100%; }
-  .orbit { width: 340px; height: 340px; }
+  .orbit-wrap { width: min(340px, calc(100% - 24px)); }
   .glow { width: 300px; height: 300px; }
   .orbit .badge { font-size: 13px; padding: 8px 0; }
   .badge.b1 { width: 110px; margin-left: -55px; }
@@ -162,7 +164,7 @@ a:hover { color: var(--dorado-2); }
 .nombre { background: var(--crema); color: var(--choco); padding: 160px 24px 140px; margin-top: -30px; position: relative; overflow: hidden; }
 .par { position: absolute; top: 40px; left: 0; white-space: nowrap; font-family: 'Gloock', Georgia, serif; font-size: 300px; line-height: 1; color: transparent; -webkit-text-stroke: 2px var(--tostado); opacity: .6; pointer-events: none; will-change: transform; }
 .nombre .kicker { color: var(--marron); margin-bottom: 28px; }
-.nombre-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; align-items: end; position: relative; }
+.nombre-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr)); gap: 40px; align-items: end; position: relative; }
 .nombre h2 { font-size: clamp(110px, 16vw, 240px); line-height: .85; }
 .nombre .pan { color: var(--marron); }
 .nombre .neo { color: var(--naranja); }
@@ -173,7 +175,7 @@ a:hover { color: var(--dorado-2); }
 .promesa { background: var(--choco); padding: 150px 24px; }
 .promesa > .wrap > h2 { font-size: clamp(40px, 5.6vw, 84px); line-height: 1.05; max-width: 1050px; }
 .promesa h2 .oro { color: var(--dorado); }
-.puntos3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 24px; margin-top: 90px; }
+.puntos3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr)); gap: 24px; margin-top: 90px; }
 .punto { border-top: 2px solid var(--marron); padding-top: 28px; transition: border-color .3s; }
 .punto:hover { border-color: var(--dorado); }
 .punto .num { font-family: 'Gloock', Georgia, serif; font-size: 72px; color: var(--naranja); line-height: 1; transition: transform .35s; display: inline-block; }
@@ -202,7 +204,7 @@ a:hover { color: var(--dorado-2); }
 }
 .pill:hover { transform: translateY(-2px); }
 .pill[aria-pressed="true"] { background: var(--choco); color: var(--crema); }
-.productos { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 24px; margin-top: 64px; }
+.productos { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(260px, 100%), 1fr)); gap: 24px; margin-top: 64px; }
 .card {
   background: var(--marron);
   color: var(--crema);
@@ -261,7 +263,7 @@ a:hover { color: var(--dorado-2); }
 .cf-hero h1 .oro { color: var(--dorado); }
 .cf-hero p.lead { font-size: 22px; line-height: 1.5; color: var(--crema-2); max-width: 640px; margin-top: 28px; }
 .como { background: var(--marron); padding: 120px 24px; position: relative; overflow: hidden; border-radius: 64px 64px 0 0; }
-.dos { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 28px; }
+.dos { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr)); gap: 28px; }
 .caja { border-radius: 48px; padding: 48px; }
 .caja .kicker { font-size: 15px; }
 .caja h3 { font-size: 44px; line-height: 1; margin-top: 16px; }
@@ -283,7 +285,7 @@ a:hover { color: var(--dorado-2); }
 .movil img { width: 100%; height: 100%; object-fit: cover; object-position: top; border-radius: 30px; }
 @keyframes tilt { 0%, 100% { transform: rotate(-6deg) translateY(0); } 50% { transform: rotate(-2deg) translateY(-14px); } }
 .pasos-h { margin-top: 70px; font-size: clamp(36px, 4.4vw, 60px); line-height: 1; }
-.pasos3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin-top: 28px; }
+.pasos3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(220px, 100%), 1fr)); gap: 16px; margin-top: 28px; }
 .paso { border: 2px solid var(--tostado); border-radius: 28px; padding: 24px; color: var(--crema); transition: background .3s, transform .3s; }
 .paso:hover { background: rgba(247,240,227,.08); transform: translateY(-4px); }
 .paso .n { font-family: 'Gloock', Georgia, serif; font-size: 40px; color: var(--dorado); }
@@ -293,7 +295,7 @@ a:hover { color: var(--dorado-2); }
 .bono-sec { background: var(--crema); color: var(--choco); padding: 130px 24px; overflow: hidden; }
 .bono-sec .kicker { color: var(--marron); }
 .bono-sec h2 { font-size: clamp(48px, 6.4vw, 96px); line-height: .95; margin-top: 16px; }
-.bono-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 48px; align-items: center; margin-top: 56px; }
+.bono-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr)); gap: 48px; align-items: center; margin-top: 56px; }
 .tarjeta { background: var(--choco-2); border-radius: 40px; padding: 30px 26px; color: var(--crema); box-shadow: 0 30px 60px rgba(62,26,14,.3); transform: rotate(-2deg); transition: transform .4s; }
 .tarjeta:hover { transform: rotate(0deg) scale(1.02); }
 .tarjeta .lineap { height: 8px; background: radial-gradient(circle, var(--dorado) 3px, transparent 3.5px) 0 0 / 15px 8px repeat-x; }
@@ -331,3 +333,20 @@ a:hover { color: var(--dorado-2); }
 /* Los marquees inclinados se salen a propósito por los lados: recortamos sin crear scroll horizontal */
 main { overflow-x: hidden; }
 @supports (overflow: clip) { main { overflow-x: clip; } }
+
+/* ---------- Pantallas muy estrechas (iPhone SE 1ª gen., 320 px) ---------- */
+.regla > div { min-width: 0; }
+@media (max-width: 380px) {
+  .nav-links { gap: 6px 12px; font-size: 12px; letter-spacing: .05em; }
+  .nav .btn-naranja { padding: 10px 14px; font-size: 14px; }
+  .nav-logo img { height: 34px; }
+  .hero h1 { font-size: 58px; }
+  .regla { gap: 14px; }
+  .regla .ic { width: 48px; height: 48px; font-size: 17px; }
+  .caja { padding: 28px 20px; }
+  .caja h3 { font-size: 30px; }
+  .casillas { gap: 12px 6px; }
+  .casilla .premio { font-size: 10px; padding: 3px 6px; right: -6px; }
+  .casilla .premio.esp { width: 54px; font-size: 9px; }
+  .mapa { height: 260px; }
+}
